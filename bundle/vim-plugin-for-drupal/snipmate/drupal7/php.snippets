@@ -34,43 +34,43 @@ snippet hook_block
 	/**
 	 * Implements hook_block_save().
 	 */
-	function `Filename()`_block_save() {
+	function `Filename()`_block_save($delta = '', $edit = array()) {
 	}
 
 	/**
 	 * Implements hook_block_view().
 	 */
-	function `Filename()`_block_view() {
+	function `Filename()`_block_view($delta = '') {
 	}
 
 	/**
 	 * Implements hook_block_configure().
 	 */
-	function `Filename()`_block_configure() {
+	function `Filename()`_block_configure($delta = '') {
 	}
 
 	/**
 	 * Implements hook_block_list_alter().
 	 */
-	function `Filename()`_block_list_alter() {
+	function `Filename()`_block_list_alter(&$blocks) {
 	}
 
 	/**
 	 * Implements hook_block_info_alter().
 	 */
-	function `Filename()`_block_info_alter() {
+	function `Filename()`_block_info_alter(&$blocks, $theme, $code_blocks) {
 	}
 
 	/**
 	 * Implements hook_block_view_alter().
 	 */
-	function `Filename()`_block_view_alter() {
+	function `Filename()`_block_view_alter(&$data, $block) {
 	}
 
 	/**
 	 * Implements hook_block_view_MODULE_DELTA_alter().
 	 */
-	function `Filename()`_block_view_MODULE_DELTA_alter() {
+	function `Filename()`_block_view_MODULE_DELTA_alter(&$data, $block) {
 	}
 
 snippet hook_comment
