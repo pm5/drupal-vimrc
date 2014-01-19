@@ -28,19 +28,29 @@ snippet hook_block
 	 * Implements hook_block_info().
 	 */
 	function `Filename()`_block_info() {
-	  ${1:// Your code here}
-	}
-
-	/**
-	 * Implements hook_block_save().
-	 */
-	function `Filename()`_block_save($delta = '', $edit = array()) {
+		$blocks = array();
+		$blocks['${1:delta}'] = array(
+			'info' => t('${2:subject}'),
+		);
+		return $blocks;
 	}
 
 	/**
 	 * Implements hook_block_view().
 	 */
 	function `Filename()`_block_view($delta = '') {
+		if ($delta == '$1') {
+			return array(
+			  'subject' => t('${3:block title}'),
+				'content' => ${4},
+			);
+		}
+	}
+
+	/**
+	 * Implements hook_block_save().
+	 */
+	function `Filename()`_block_save($delta = '', $edit = array()) {
 	}
 
 	/**
@@ -78,7 +88,7 @@ snippet hook_comment
 	 * Implements hook_comment_view().
 	 */
 	function `Filename()`_comment_view($comment, $view_mode, $langcode) {
-	  ${1:// Your code here}
+	  ${1:// Your code here.}
 	}
 
 	/**
@@ -134,7 +144,7 @@ snippet hook_node_type
 	 * Implements hook_node_type_delete().
 	 */
 	function `Filename()`_node_type_delete($info) {
-	  ${1:// Your code here}
+	  ${1:// Your code here.}
 	}
 
 	/**
@@ -207,6 +217,59 @@ snippet hook_update_N
 	  ${1:// Your code here.}
 
 	  return $ret;
+	}
+
+snippet _form
+	function `Filename()`_${1:data}_form($form, &$form_state)
+	{
+		$form = array();
+		${2:// Your code here.}
+		return $form;
+	}
+
+	function `Filename()`_$1_form_validate($form, &$form_state)
+	{
+		${3}
+	}
+
+	function `Filename()`_$1_form_submit($form, &$form_state)
+	{
+		${4}
+	}
+	${5}
+
+snippet hook_form_FORM_ID_alter
+	/**
+	 * Implements hook_form_FORM_ID_alter().
+	 * @see https://api.drupal.org/api/drupal/modules!system!system.api.php/function/hook_form_FORM_ID_alter/7
+	 * @return array $ret
+	 *  An array with the results of the calls to update_sql().
+	 */
+	function `Filename()`_form_${1:form_id}_alter(&$form, &$form_state, $form_id) {
+	  ${2:// Your code here.}
+	}
+
+snippet hook_field_widget
+	/**
+	 * Implements hook_field_widget_info().
+	 * @see https://api.drupal.org/api/drupal/modules!field!field.api.php/function/hook_field_widget_info/7
+	 * @return array $ret
+	 *  An array describing the widget types implemented by the module.
+	 */
+	function `Filename()`_field_widget_info() {
+		$info = array();
+		${1:// Your code here.}
+		return $info;
+	}
+
+	/**
+	 * Implements hook_field_widget_form().
+	 * @see https://api.drupal.org/api/drupal/modules!field!field.api.php/function/hook_field_widget_form/7
+	 * @return 
+	 *  The form elements for a single widget for this field.
+	 */
+	function `Filename()`_field_widget_form(&$form, &$form_state, $field, $instance, $langcode, $items, $delta, $element) {
+		return $element;
 	}
 
 ## Everything else
