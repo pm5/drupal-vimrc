@@ -219,7 +219,7 @@ snippet hook_update_N
 	  return $ret;
 	}
 
-snippet _form
+snippet hook_form
 	function `Filename()`_${1:data}_form($form, &$form_state)
 	{
 		$form = array();
@@ -270,6 +270,67 @@ snippet hook_field_widget
 	 */
 	function `Filename()`_field_widget_form(&$form, &$form_state, $field, $instance, $langcode, $items, $delta, $element) {
 		return $element;
+	}
+
+snippet hook_schema
+	function `Filename()`_schema() {
+	  $schema = array();
+	  $schema['`Filename()`_${1:/* entity */}'] = array(
+	    'description' => ${2:/* description of the entity */},
+	    'fields' => array(
+	      '${3:/* id field */}' => array(
+	        'description' => 'Primary key of $1',
+	        'type' => 'serial',
+	        'unsigned' => TRUE,
+	        'not null' => TRUE,
+	      ),
+	      ${4:/* more fields /*}
+	      'language' => array(
+	        'description' => 'Language of this set of settings',
+	        'type' => 'varchar',
+	        'length' => 12,
+	        'not null' => TRUE,
+	        'default' => '',
+	      ),
+	      'created' => array(
+	        'description' => 'The Unix timestamp of the entity creation time.',
+	        'type' => 'int',
+	        'not null' => TRUE,
+	        'default' => 0,
+	      ),
+	    ),
+	    'primary key' => array('$3'),
+	    'indexes' => array(
+	      'language' => array('language'),
+	    ),
+	  );
+	  return $schema;
+	}
+
+snippet hook_views
+	/**
+	 * Implements hook_views_api().
+	 */
+	function `Filename()`_views_api()
+	{
+	  return array(
+	    'api' => '3.0',
+	  );
+	}
+
+	/**
+	 * Implements hook_views_default_views().
+	 * Put this in '`Filename()`.views_default.inc' under module directory to load all exported views under 'views' directory.
+	 */
+	function `Filename()`_views_default_views()
+	{
+	  $path = './' . drupal_get_path('module', '`Filename()`') . '/views/*.inc';
+	  $views = array();
+	  foreach (glob($path) as $views_filename) {
+	    require_once($views_filename);
+	    array_push($views, $view);
+	  }
+	  return $views;
 	}
 
 ## Everything else
