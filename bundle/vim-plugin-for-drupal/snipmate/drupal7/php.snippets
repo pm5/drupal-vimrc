@@ -23,6 +23,14 @@ snippet drupal_goto
 
 ## Hooks
 
+snippet hook
+	/**
+	 * Implements hook_$1().
+	 */
+	function `Filename()`_${1}() {
+		${2}
+	}
+
 snippet hook_block
 	/**
 	 * Implements hook_block_info().
@@ -265,7 +273,7 @@ snippet hook_field_widget
 	/**
 	 * Implements hook_field_widget_form().
 	 * @see https://api.drupal.org/api/drupal/modules!field!field.api.php/function/hook_field_widget_form/7
-	 * @return 
+	 * @return
 	 *  The form elements for a single widget for this field.
 	 */
 	function `Filename()`_field_widget_form(&$form, &$form_state, $field, $instance, $langcode, $items, $delta, $element) {
@@ -332,6 +340,18 @@ snippet hook_views
 	  }
 	  return $views;
 	}
+
+snippet hook_entity
+	/**
+	 * Implements hook_entity_info().
+	 */
+	function my_entity_entity_info()
+	{
+		$entities = array();
+
+		return $entities;
+	}
+
 
 ## Everything else
 
