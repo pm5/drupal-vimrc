@@ -352,6 +352,52 @@ snippet hook_entity
 		return $entities;
 	}
 
+snippet hook_menu_block
+	/**
+	 * Implements hook_menu_block_get_menus()
+	 */
+	function `Filename()`_menu_block_get_menus() {
+		$menus = array();
+		$menus['`Filename()`-menu'] = 'menu title';
+		return $menus;
+	}
+
+	/**
+	 * Implements hook_menu_block_blocks()
+	 */
+	function `Filename()`_menu_block_blocks() {
+		return array(
+			'`Filename()`-menu' => array(
+				'menu_name' => 'primary-links',
+				'parent_mlid' => 0,
+				'title_link' => FALSE,
+				'admin_title' => 'Drop-down navigation',
+				'level' => 1,
+				'follow' => 0,
+				'depth' => 2,
+				'expanded' => TRUE,
+				'sort' => FALSE,
+			),
+		);
+	}
+
+	/**
+	 * Implements hook_menu_block_get_sort_menus()
+	 */
+	function `Filename()`_menu_block_get_sort_menus() {
+		$menus = array();
+		$menus['`Filename()`-menu'] = 'menu title';
+		// Optionally, add a regular expression to match several menus at once.
+		//$menus['/^my\-menus\-.+/'] = t('My menus');
+
+		return $menus;
+	}
+
+	/**
+	 * Implements hook_menu_block_tree_alter()
+	 */
+	function hook_menu_block_tree_alter(&$tree, &$config) {
+	}
 
 ## Everything else
 
