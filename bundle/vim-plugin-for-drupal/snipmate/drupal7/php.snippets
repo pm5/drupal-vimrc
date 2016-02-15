@@ -345,12 +345,24 @@ snippet hook_entity
 	/**
 	 * Implements hook_entity_info().
 	 */
-	function my_entity_entity_info()
+	function `Filename()`_entity_info()
 	{
 		$entities = array();
 
 		return $entities;
 	}
+
+snippet hook_entity_info_alter
+	/**
+	 * Implements hook_entity_info_alter().
+	 */
+	function `Filename()`_entity_info_alter(&$entity_info)
+	{
+	  $entity_info['node']['view modes']['${1:/* awesomelook */}'] = array(
+	    'label' => t('${2:/* Look Awesome */}'),
+	    'custom settings' => TRUE,
+	  );
+	}${3}
 
 snippet hook_menu_block
 	/**
@@ -397,6 +409,18 @@ snippet hook_menu_block
 	 * Implements hook_menu_block_tree_alter()
 	 */
 	function hook_menu_block_tree_alter(&$tree, &$config) {
+	}
+
+snippet hook_preprocess
+	/**
+	 * Implements hook_theme_preprocess_node().
+	 */
+	function `Filename()`_block_info() {
+		$blocks = array();
+		$blocks['${1:delta}'] = array(
+			'info' => t('${2:subject}'),
+		);
+		return $blocks;
 	}
 
 ## Everything else
